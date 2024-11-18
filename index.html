@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stily/body.css">
+    <link rel="stylesheet" href="stily/main.css">
+    <title>traductor</title>
+</head>
+<body>
+
+    <header> 
+        <p> traductor</p>
+    </header>
+
+    <main>
+        <div id="contenedor">
+            
+            <h3>lenguaje</h3>
+            <select name="lenguaje" id="idiomaR">
+                <option value="en-es">Inglés a Español</option>
+                <option value="es-en">Español a Inglés</option>
+            </select>
+
+            <input type="text" id="contenedorP" placeholder="traductor" >
+            <button id="bnt-traducir">TRADUCIR</button>
+            <div class="resultado"></div>
+
+        </div>
+
+        <div id="contenedor2">
+            <p>vocabulario</p> <br>
+            <div id="campo2">
+            
+            </div>
+        </div>
+
+    </main>
+
+    <footer><p> juan esteban grajales mesa</p></footer>
+
+    <script type="module" src="scripts/app.js"></script>
+    <script type="module" src="scripts/vocabulario.js"></script>
+</body>
+</html>

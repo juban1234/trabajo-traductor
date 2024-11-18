@@ -1,0 +1,16 @@
+#contenedor2{
+    overflow-y: scroll;
+    width: 100%;
+    height: 70vh;
+}
+
+#campo2{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;    
+}
+
+#contenedor{
+    display: flex;
+    flex-direction: column;
+}
