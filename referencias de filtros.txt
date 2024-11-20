@@ -1,0 +1,47 @@
+// Lista de arreglos donde cada arreglo tiene un nombre y otro dato
+const listaArreglos = [
+    ['Ana', 24],
+    ['Bruno', 30],
+    ['Carlos', 22],
+    ['David', 28],
+    ['Elena', 25],
+    ['Felipe', 35]
+];
+
+function filtrarYOrdenar() {
+    const filtro = document.getElementById("filtro").value.toUpperCase();
+    
+    // Arreglo vacío donde se guardarán los elementos filtrados y ordenados
+    const arreglosFiltradosYOrdenados = [];
+    
+    // Filtrar y ordenar con forEach
+    listaArreglos.forEach(arreglo => {
+        // Filtrar por la primera letra del nombre
+        if (filtro === "" || arreglo[0].toUpperCase().startsWith(filtro)) {
+            arreglosFiltradosYOrdenados.push(arreglo);
+        }
+    });
+
+    // Ordenar los elementos en arreglosFiltradosYOrdenados
+    arreglosFiltradosYOrdenados.sort((a, b) => {
+        const textoA = a[0].toUpperCase();
+        const textoB = b[0].toUpperCase();
+        if (textoA < textoB) return -1;
+        if (textoA > textoB) return 1;
+        return 0;
+    });
+
+    // Limpiar la lista en el HTML
+    const lista = document.getElementById("lista");
+    lista.innerHTML = "";
+
+    // Agregar los arreglos ordenados y filtrados a la lista
+    arreglosFiltradosYOrdenados.forEach(arreglo => {
+        const li = document.createElement("li");
+        li.textContent = `${arreglo[0]} - Edad: ${arreglo[1]}`;
+        lista.appendChild(li);
+    });
+}
+
+// Inicializar la lista con todos los arreglos
+filtrarYOrdenar();
