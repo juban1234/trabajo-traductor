@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stily/body.css">
-    <link rel="stylesheet" href="stily/main.css">
+    <link rel="stylesheet" href="estilos/stiless.css">
     <title>traductor</title>
 </head>
 <body>
@@ -16,15 +15,17 @@
     <main>
 
         <div id="contenedor">
-            
+
+            <div class="contenedorPalabras">            
+                <select id="idiomaR">
+                    <option value="en-es">Inglés a Español</option>
+                    <option value="es-en">Español a Inglés</option>
+                </select>
+
             <input type="text" id="contenedorP" placeholder="Escribe una palabra">
 
-            <select id="idiomaR">
-                <option value="en-es">Inglés a Español</option>
-                <option value="es-en">Español a Inglés</option>
-            </select>
-
             <button id="bnt-traducir">Traducir</button>
+            </div>
 
             <div id="resultado"></div>
 
@@ -33,10 +34,17 @@
 
 
         <div id="contenedor2">
-            <label for="A-Z">ASC </label>
-            <input type="button" value="A-Z" id="asendente1">
-            <input type="button" value="no filtrar" id="asendente1">
-            <p>vocabulario</p> <br>
+            <select id="categoria">
+                <option value="todos">todos</option>
+                <option value="frutas">frutas</option>
+                <option value="colores">colores</option>
+                <option value="descripciones">descripciones</option>
+                <option value="hablidades">hablidades</option>
+                <option value="comidas">comidas</option>
+            </select>
+
+            <input type="button" value="A-Z" id="asendente1"> 
+            <p>vocabulario</p> 
             <div id="campo2"></div>
         </div>
 
