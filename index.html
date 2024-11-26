@@ -39,20 +39,34 @@
                 <option value="frutas">frutas</option>
                 <option value="colores">colores</option>
                 <option value="descripciones">descripciones</option>
-                <option value="hablidades">hablidades</option>
+                <option value="habilidades">hablidades</option>
                 <option value="comidas">comidas</option>
             </select>
 
-            <input type="button" value="A-Z" id="asendente1"> 
+            <select id="asendente1">
+                <option value="A-Z">Orden A-Z</option>
+                <option value="no">no ordenar</option>
+            </select>
             <p>vocabulario</p> 
             <div id="campo2"></div>
         </div>
-
     </main>
-
+    <form id="addWordForm">
+        <input type="text" id="englishWord" placeholder="Palabra en inglés" required>
+        <input type="text" id="spanishWord" placeholder="Palabra en español" required>
+        <input type="text" id="example" placeholder="Ejemplo" required>
+        <select id="categorySelect">
+            <option value="frutas">frutas</option>
+            <option value="colores">colores</option>
+            <option value="descripciones">descripciones</option>
+            <option value="habilidades">hablidades</option>
+            <option value="comidas">comidas</option>
+        </select>
+        <button type="submit">Agregar</button>
+    </form>
     <footer><p> juan esteban grajales mesa</p></footer>
-
     <script type="module" src="scripts/app.js"></script>
     <script type="module" src="scripts/vocabulario.js"></script>
+
 </body>
 </html>
