@@ -7,7 +7,9 @@ const categoria = document.getElementById('categoria')
 const resultado = document.getElementById('resultado')
 const campo2Container = document.getElementById('campo2')
 
-// 1 Función para crear las tarjetas
+
+
+// Función para crear las tarjetas
 const makeCard = (character, idioma) => {
     const campo2 = document.createElement('div')
     campo2.id = 'campo2'
@@ -21,13 +23,15 @@ const makeCard = (character, idioma) => {
     campo2Container.appendChild(campo2)
 }
 
-// Cargamos el vocabulario desde localStorage
-
-
 // Función para cargar vocabulario desde localStorage
-const cargarVocabularioDesdeLocalStorage = () =>{
-    const vocabularioGuardado = localStorage.getItem('vocabulario')
-    return vocabularioGuardado ? JSON.parse(vocabularioGuardado) : { categorias: {} }
+const cargarVocabularioDesdeLocalStorage = () => {
+    try {
+        const vocabularioGuardado = localStorage.getItem('vocabulario')
+        return vocabularioGuardado ? JSON.parse(vocabularioGuardado) : { categorias: {} }
+    } catch (error) {
+        console.error('Error al cargar vocabulario:', error)
+        return { categorias: {} }
+    }
 }
 
 let vocabulario = cargarVocabularioDesdeLocalStorage()
@@ -50,7 +54,6 @@ const verificarYGuardarVocabulario= ()=> {
         localStorage.setItem('vocabulario', JSON.stringify(initialVocabulario))
     }
 }
-
 
 
 // Inicializamos el vocabulario y lo guardamos si no existe
@@ -99,33 +102,40 @@ const traducir = () => {
     }
 }
 
-// Función para ordenar las tarjetas alfabéticamente
 const orderAsend = () => {
-    const selectorASC = document.getElementById('asendente1').value 
+    const selectorASC = document.getElementById('asendente1').value
 
     if (selectorASC === "A-Z") {
-        renderCardsASC(selectorL.value)
+        renderCardsASC(selectorL.value, true) // Ascendente
+    } else if (selectorASC === "Z-A") {
+        renderCardsASC(selectorL.value, false) // Descendente
     }
 }
 
-// Función para renderizar las tarjetas ordenadas alfabéticamente
 const renderCardsASC = (idioma) => {
     campo2Container.innerHTML = '' // Limpiamos el contenedor
 
-    // Crear una lista de todas las palabras de todas las categorías
-    const palabras = []
+    // Obtener la categoría seleccionada
+    const categoriaSeleccionada = categoria.value
 
-    // Recolectamos todas las palabras de todas las categorías
-    Object.values(vocabulario.categorias).forEach(categoria => {
-        palabras.push(...categoria)
-    })
+    // Obtener las palabras de la categoría seleccionada o de todas
+    let palabras = []
+    if (categoriaSeleccionada === "todos") {
+        // Recolectamos todas las palabras de todas las categorías
+        Object.values(vocabulario.categorias).forEach(cat => {
+            palabras.push(...cat)
+        })
+    } else {
+        // Solo las palabras de la categoría seleccionada
+        palabras = vocabulario.categorias[categoriaSeleccionada] || []
+    }
 
     // Ordenamos las palabras
     const filtroASC = palabras.sort((a, b) => {
         if (idioma === "es-en") {
-            return a.spanish.localeCompare(b.spanish) // Ordenar por español
+            return a.spanish.localeCompare(b.spanish) 
         } else {
-            return a.english.localeCompare(b.english) // Ordenar por inglés
+            return a.english.localeCompare(b.english) 
         }
     })
 
@@ -134,32 +144,39 @@ const renderCardsASC = (idioma) => {
 }
 
 
+
 // Función para agregar la nueva palabra al vocabulario
-function addWordToVocabulario(english, spanish, example, category) {
-    const newId = generateNewId() // Generar un nuevo ID
-    const newWord = {
-        id: newId,
-        english: english,
-        spanish: spanish,
-        example: example
+const addWordToVocabulario = (english, spanish, example, category)=> {
+    const palabrasExistentes = vocabulario.categorias[category] || []
+    const existePalabra = palabrasExistentes.some(
+        palabra => palabra.english.toLowerCase() === english.toLowerCase()
+    )
+    if (existePalabra) {
+        alert('Esta palabra ya existe en la categoría.')
+        return
     }
 
-    // Agregar la palabra a la categoría seleccionada
+    const newWord = {
+        id: generateNewId(),
+        english,
+        spanish,
+        example,
+    }
     if (vocabulario.categorias[category]) {
         vocabulario.categorias[category].push(newWord)
     } else {
         vocabulario.categorias[category] = [newWord]
     }
 
-    // Guardar el vocabulario actualizado en localStorage
     localStorage.setItem('vocabulario', JSON.stringify(vocabulario))
-
-    // Actualizar las tarjetas sin recargar la página
-    renderCards(selectorL.value)  // Actualizamos las tarjetas para mostrar la nueva palabra
+    renderCards(selectorL.value)
+    
+    
 }
 
+
 // Generar un nuevo ID único para las palabras
-function generateNewId() {
+const generateNewId = () => {
     return Math.floor(Math.random() * 1000000)
 }
 
@@ -200,6 +217,8 @@ categoria.addEventListener('change', () => {
         renderCardsCategoria(categoriaSeleccionada, selectorL.value)
     }
 })
+
+console.log(vocabulario)
 
 // Ejecutar el código cuando el DOM esté completamente cargado
 window.addEventListener('DOMContentLoaded', () => {

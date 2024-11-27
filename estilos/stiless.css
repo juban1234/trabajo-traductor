@@ -1,113 +1,120 @@
-*{
-    padding: 0;
+/* General Reset */
+* {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-body{
-    height: 100vh;
+/* Body Styles */
+body {
+    background: linear-gradient(135deg, #f0f4ff, #d9e7ff);
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-header{
-    width: 100%;
-    height: 20%;
-    background-color: blue;
-    color: white;
-    padding: 20px;
-    font-size: 50px;
+/* Header */
+header {
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 1rem;
     text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
-main{
-    width: 100%;
-    height: 70%;
+/* Main Layout */
+main {
+    padding: 2rem;
+    flex: 1;
+}
+
+/* Containers */
+#contenedor, #contenedor2, #agregar {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #contenedor{
-    width: 100%;
-    height: 20%;
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    gap: 10px;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
 }
 
-.contenedorPalabras{
-    width: 50%;
-    border-style: solid;
-    border-color: aqua;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+/* Inputs and Selects */
+input[type="text"], select, button {
+    width: calc(100% - 2rem);
+    max-width: 400px;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
 }
 
-#idiomaR{
-    width: 200px;
-    height: 30px;
-    background-color: aqua;
-    border-radius: 10px;
-    font-size: 15px;
+/* Button */
+button {
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-#contenedorP{
-    width: 85%;
-    height: 40px;
-    border-radius: 15px;
+button:hover {
+    background: #357abd;
 }
 
-#bnt-traducir{
-    width: 60%;
+/* Resultado */
+#resultado {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #333;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
 }
 
-#resultado{
-    width: 50%;
-    background-color: rgb(182, 175, 175);
-    border-style: solid;
-    border-color: aqua;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#contenedor2{
-    height: 80% ;
-    border-style: solid;
-    border-color: aqua;
-    overflow: scroll;
+/* Campo2 */
+#campo2 {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 5px;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
-#campo2{
-    width: 90%;
-    font-size: 20px;
-    padding: 5px;
+#campo2 div {
+    background: #e3f2fd;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#asendente1{
-    position: relative;
-    top: 25px;
-    right: 250px;
-}
-
-#categoria{
-    position: relative;
-    top: 40px;
-    left: 250px;
-}
-
-
-footer{
-    background-color: black;
-    color: white;
-    height: 10%;
-    width: 100%;
+/* Footer */
+footer {
+    background-color: #4a90e2;
+    color: #fff;
     text-align: center;
-    padding: 20px;
-    font-size: 30px;
+    padding: 1rem;
+    margin-top: auto;
+    font-size: 0.9rem;
 }
 
+/* Formulario de Agregar */
+#addWordForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
